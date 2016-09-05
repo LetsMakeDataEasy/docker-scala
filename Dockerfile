@@ -20,15 +20,16 @@ RUN \
     echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823 && \
     apt-get update && \
-    apt-get install -y sbt && \
-    sbt sbtVersion
+    apt-get install -y sbt
 
 RUN \
   mkdir -p /root/.ivy2 && \
+  mkdir -p /root/.sbt && \
   mkdir /playground
 
 VOLUME /root/.ivy2
+VOLUME /root/.sbt
 VOLUME /playground
 
 # Define working directory
-WORKDIR /root
+WORKDIR /playground
